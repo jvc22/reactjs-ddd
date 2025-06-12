@@ -1,10 +1,14 @@
+import { LinksTable } from './links-table'
+import { SectionCards } from './section-cards'
+
 export function LinksPage() {
   return (
     <>
-      <title>Dashboard | shrinker</title>
+      <title>Dashboard | shrink.er</title>
 
-      <div>
-        <span>links</span>
+      <div className="@container/main mx-auto flex max-w-[1080px] flex-col gap-6">
+        <SectionCards />
+        <LinksTable />
       </div>
     </>
   )
