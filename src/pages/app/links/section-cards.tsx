@@ -16,6 +16,7 @@ export function SectionCards() {
   const { data: metrics, isFetching } = useQuery({
     queryKey: ['metrics'],
     queryFn: getMetrics,
+    staleTime: 1000 * 60,
   })
 
   return (
