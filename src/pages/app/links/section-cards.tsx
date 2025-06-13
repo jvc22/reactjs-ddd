@@ -22,7 +22,6 @@ export function SectionCards() {
 
   return (
     <div className="grid grid-cols-1 gap-6 @xl/main:grid-cols-3">
-      <PromotionalCard />
       <Card className="@container/card">
         <CardHeader>
           <CardDescription className="flex items-start justify-between">
@@ -53,6 +52,7 @@ export function SectionCards() {
           </CardTitle>
         </CardHeader>
       </Card>
+      <PromotionalCard />
     </div>
   )
 }
