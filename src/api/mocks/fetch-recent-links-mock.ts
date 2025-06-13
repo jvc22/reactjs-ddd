@@ -3,7 +3,7 @@ import { http, HttpResponse } from 'msw'
 
 import type { FetchRecentLinksResponse } from '../fetch-recent-links'
 
-const links: FetchRecentLinksResponse['links'] = Array.from({
+export const links: FetchRecentLinksResponse['links'] = Array.from({
   length: 22,
 })
   .map(() => {

@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { Eye, PackagePlus } from 'lucide-react'
+import CountUp from 'react-countup'
 
 import { getMetrics } from '@/api/get-metrics'
 import {
@@ -30,7 +31,7 @@ export function SectionCards() {
           </CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
             {metrics && !isFetching ? (
-              metrics.totalCount
+              <CountUp end={metrics.totalCount} />
             ) : (
               <Skeleton className="h-9 w-24" />
             )}
@@ -45,7 +46,7 @@ export function SectionCards() {
           </CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
             {metrics && !isFetching ? (
-              metrics.totalAccessCount
+              <CountUp end={metrics.totalAccessCount} />
             ) : (
               <Skeleton className="h-9 w-32" />
             )}
