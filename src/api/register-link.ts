@@ -8,12 +8,10 @@ export interface RegisterLinkRequest {
 export type RegisterLinkResponse = void
 
 export async function registerLink({ title, url }: RegisterLinkRequest) {
-  await api
-    .post<RegisterLinkResponse>('links', {
-      json: {
-        title,
-        url,
-      },
-    })
-    .json()
+  await api.post<RegisterLinkResponse>('links', {
+    json: {
+      title,
+      url,
+    },
+  })
 }

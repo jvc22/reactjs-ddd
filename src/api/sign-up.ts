@@ -9,13 +9,11 @@ export interface SignUpRequest {
 type SignUpResponse = void
 
 export async function signUp({ name, email, password }: SignUpRequest) {
-  await api
-    .post<SignUpResponse>('sign-up', {
-      json: {
-        name,
-        email,
-        password,
-      },
-    })
-    .json()
+  await api.post<SignUpResponse>('sign-up', {
+    json: {
+      name,
+      email,
+      password,
+    },
+  })
 }
