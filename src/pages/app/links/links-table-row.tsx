@@ -1,4 +1,5 @@
 import { Pencil, Search, SquareArrowOutUpRight, Trash2 } from 'lucide-react'
+import { Link } from 'react-router'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -37,16 +38,12 @@ export function LinksTableRow({ link }: LinksTableRowProps) {
       </TableCell>
       <TableCell className="text-muted-foreground">{link.code}</TableCell>
       <TableCell className="w-[180px]">
-        <Button
-          asChild
-          variant="secondary"
-          className="size-fit px-2 py-0.5 text-xs"
-        >
-          <Badge className="max-w-[160px]">
+        <Link to={link.url} target="_blank" about="_blank">
+          <Badge variant="secondary" className="max-w-[160px]">
             <span className="truncate">{link.url}</span>
             <SquareArrowOutUpRight className="size-3" />
           </Badge>
-        </Button>
+        </Link>
       </TableCell>
       <TableCell className="w-[220px] text-center">
         {link.accessCount}
