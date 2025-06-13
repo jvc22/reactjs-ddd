@@ -1,10 +1,15 @@
+import { useMutation } from '@tanstack/react-query'
+import { HTTPError } from 'ky'
 import { Pencil, Search, SquareArrowOutUpRight, Trash2 } from 'lucide-react'
 import { Link } from 'react-router'
+import { toast } from 'sonner'
 
+import { deleteLink } from '@/api/delete-link'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 import { TableCell, TableRow } from '@/components/ui/table'
+import { queryClient } from '@/lib/tanstack-query'
 
 import { LinkDetails } from './link-details'
 
@@ -21,6 +26,25 @@ interface LinksTableRowProps {
 }
 
 export function LinksTableRow({ link }: LinksTableRowProps) {
+  const { mutateAsync: deleteLinkFn, isPending } = useMutation({
+    // TODO: mock
+    mutationFn: deleteLink,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['links'],
+      })
+
+      toast.success('Link deletado com sucesso!')
+    },
+    onError: async (err) => {
+      if (err instanceof HTTPError) {
+        const { message } = await err.response.json()
+
+        toast.error(message)
+      }
+    },
+  })
+
   return (
     <TableRow>
       <TableCell className="w-[64px]">
@@ -54,7 +78,12 @@ export function LinksTableRow({ link }: LinksTableRowProps) {
         <Button size="sm" variant="outline">
           Editar <Pencil className="size-4" />
         </Button>
-        <Button size="sm" variant="destructive">
+        <Button
+          size="sm"
+          variant="destructive"
+          disabled={isPending}
+          onClick={() => deleteLinkFn({ id: link.id })}
+        >
           <Trash2 className="size-4" />
         </Button>
       </TableCell>
