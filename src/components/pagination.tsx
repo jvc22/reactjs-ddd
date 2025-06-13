@@ -18,7 +18,7 @@ export function Pagination({
   totalCount,
   onPageChange,
 }: PaginationProps) {
-  const pages = Math.floor(totalCount / 10) || 1
+  const pages = Math.ceil(totalCount / 10) || 1
 
   return (
     <div className="flex items-center justify-between">
@@ -38,7 +38,7 @@ export function Pagination({
             disabled={pageIndex === 0}
           >
             <span className="sr-only">Primeira página</span>
-            <ChevronsLeft className="h-4 w-4" />
+            <ChevronsLeft className="size-4" />
           </Button>
           <Button
             size="icon"
@@ -48,7 +48,7 @@ export function Pagination({
             disabled={pageIndex === 0}
           >
             <span className="sr-only">Página anterior</span>
-            <ChevronLeft className="h-4 w-4" />
+            <ChevronLeft className="size-4" />
           </Button>
           <Button
             size="icon"
@@ -58,7 +58,7 @@ export function Pagination({
             disabled={pages <= pageIndex + 1}
           >
             <span className="sr-only">Próxima página</span>
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight className="size-4" />
           </Button>
           <Button
             size="icon"
@@ -68,7 +68,7 @@ export function Pagination({
             disabled={pages <= pageIndex + 1}
           >
             <span className="sr-only">Última página</span>
-            <ChevronsRight className="h-4 w-4" />
+            <ChevronsRight className="size-4" />
           </Button>
         </div>
       </div>
