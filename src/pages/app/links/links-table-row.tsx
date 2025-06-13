@@ -15,6 +15,8 @@ interface LinksTableRowProps {
     url: string
     code: string
     accessCount: number
+    createdAt: Date
+    updatedAt: Date
   }
 }
 
@@ -28,7 +30,7 @@ export function LinksTableRow({ link }: LinksTableRowProps) {
               <Search />
             </Button>
           </DialogTrigger>
-          <LinkDetails linkId={link.id} />
+          <LinkDetails link={link} />
         </Dialog>
       </TableCell>
       <TableCell className="w-[280px]">

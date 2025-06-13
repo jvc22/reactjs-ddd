@@ -1,20 +1,35 @@
+import { format } from 'date-fns'
+import { ptBR } from 'date-fns/locale'
 import { Check, Copy } from 'lucide-react'
 import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { DialogContent } from '@/components/ui/dialog'
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
+import { env } from '@/env'
 
 interface LinkDetailsProps {
-  linkId: string
+  link: {
+    id: string
+    title: string
+    url: string
+    code: string
+    accessCount: number
+    createdAt: Date
+    updatedAt: Date
+  }
 }
 
-export function LinkDetails({ linkId }: LinkDetailsProps) {
+export function LinkDetails({ link }: LinkDetailsProps) {
   const [isCopied, setIsCopied] = useState(false)
 
+  const url =
+    env.MODE === 'test'
+      ? `http://localhost:9999/${link.code}`
+      : `${env.VITE_API_URL}/${link.code}`
+
   function handleCopyUrl() {
-    const link = `http://localhost:3333/${'8ha6DsH'}`
-    navigator.clipboard.writeText(link)
+    navigator.clipboard.writeText(url)
 
     setIsCopied(true)
     setTimeout(() => setIsCopied(false), 2000)
@@ -28,33 +43,45 @@ export function LinkDetails({ linkId }: LinkDetailsProps) {
             <TableCell className="text-muted-foreground w-1/3">
               Título
             </TableCell>
-            <TableCell className="w-2/3 font-medium">
-              Meu GitHub Pessoal
-            </TableCell>
+            <TableCell className="w-2/3 font-medium">{link.title}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell className="text-muted-foreground w-1/3">URL</TableCell>
+            <TableCell className="w-2/3">{link.url}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell className="text-muted-foreground w-1/3">
               Código
             </TableCell>
-            <TableCell className="w-2/3">8ha6DsH</TableCell>
+            <TableCell className="w-2/3">{link.code}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell className="text-muted-foreground w-1/3">
               Acessos
             </TableCell>
-            <TableCell className="w-2/3">12</TableCell>
+            <TableCell className="w-2/3">{link.accessCount}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell className="text-muted-foreground w-1/3">
               Criado em
             </TableCell>
-            <TableCell className="w-2/3">22 de Outubro de 2025</TableCell>
+            <TableCell className="text-muted-foreground w-2/3">
+              {format(link.createdAt, "dd 'de' MMMM 'de' y", {
+                locale: ptBR,
+              })}
+            </TableCell>
           </TableRow>
           <TableRow>
             <TableCell className="text-muted-foreground w-1/3">
               Edtado em
             </TableCell>
-            <TableCell className="w-2/3">22 de Outubro de 2025</TableCell>
+            <TableCell className="w-2/3">
+              {link.updatedAt
+                ? format(link.updatedAt, "dd 'de' MMMM 'de' y", {
+                    locale: ptBR,
+                  })
+                : '-'}
+            </TableCell>
           </TableRow>
         </TableBody>
       </Table>
@@ -63,7 +90,7 @@ export function LinkDetails({ linkId }: LinkDetailsProps) {
 
         <div className="grid grid-cols-7 items-center gap-1.5">
           <span className="bg-muted col-span-5 truncate rounded-md p-2 text-sm">
-            http://localhost:3333/8ha6DsH
+            {url}
           </span>
 
           <Button size="icon" variant="ghost" onClick={handleCopyUrl}>

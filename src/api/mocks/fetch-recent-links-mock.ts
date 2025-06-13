@@ -11,7 +11,7 @@ export const links: FetchRecentLinksResponse['links'] = Array.from({
       id: faker.string.uuid(),
       title: faker.company.name(),
       url: faker.internet.url(),
-      code: faker.string.sample(8),
+      code: faker.string.nanoid().slice(0, 8),
       accessCount: faker.number.int({ min: 2, max: 1000 }),
       createdAt: faker.date.past(),
       updatedAt: faker.helpers.arrayElement([undefined, faker.date.recent()]),
