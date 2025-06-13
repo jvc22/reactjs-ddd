@@ -29,5 +29,5 @@
       ]
     }
   },
-  "include": ["src"]
+  "include": ["src", "test/unit/pagination.spec.tsx", "test/unit/nav-link.spec.tsx"]
 }

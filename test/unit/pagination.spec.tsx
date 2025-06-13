@@ -2,7 +2,7 @@ import { render } from '@testing-library/react'
 import userEvent, { type UserEvent } from '@testing-library/user-event'
 import { type Mock } from 'vitest'
 
-import { Pagination } from './pagination'
+import { Pagination } from '../../src/components/pagination'
 
 let user: UserEvent
 let onPageChangeCallback: Mock<(pageIndex: number) => void>
