@@ -19,7 +19,7 @@ export function ThemeToggle() {
           <SunIcon className="size-4 scale-100 rotate-0 transition-all dark:scale-0 dark:rotate-90" />
         </Button>
       </TooltipTrigger>
-      <TooltipContent side="right">Mudar tema</TooltipContent>
+      <TooltipContent side="left">Mudar tema</TooltipContent>
     </Tooltip>
   )
 }
