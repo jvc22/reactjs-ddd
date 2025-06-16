@@ -11,8 +11,6 @@
     "test:e2e": "start-server-and-test 'dev:test' http://localhost:9999 'cypress run'",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "lint": "biome check",
-    "lint:fix": "biome check --write",
     "cy:open": "cypress open"
   },
   "dependencies": {
