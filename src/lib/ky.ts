@@ -8,7 +8,7 @@ export const api = ky.create({
     beforeRequest: [
       async () => {
         if (env.VITE_ENABLE_API_DELAY) {
-          await new Promise((resolve) => setTimeout(resolve, 2500))
+          await new Promise((resolve) => setTimeout(resolve, 1000))
         }
       },
     ],
