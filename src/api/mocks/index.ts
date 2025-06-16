@@ -2,6 +2,7 @@ import { setupWorker } from 'msw/browser'
 
 import { env } from '@/env'
 
+import { deleteLinkMock } from './delete-link-mock'
 import { fetchRecentLinksMock } from './fetch-recent-links-mock'
 import { getMetricsMock } from './get-metrics-mock'
 import { getProfileMock } from './get-profile-mock'
@@ -16,6 +17,7 @@ export const worker = setupWorker(
   getMetricsMock,
   registerLinkMock,
   fetchRecentLinksMock,
+  deleteLinkMock,
 )
 
 export async function enableMSW() {

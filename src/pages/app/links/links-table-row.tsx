@@ -27,7 +27,6 @@ interface LinksTableRowProps {
 
 export function LinksTableRow({ link }: LinksTableRowProps) {
   const { mutateAsync: deleteLinkFn, isPending } = useMutation({
-    // TODO: mock
     mutationFn: deleteLink,
     onSuccess: () => {
       queryClient.invalidateQueries({
