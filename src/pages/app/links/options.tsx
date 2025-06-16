@@ -14,6 +14,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
+import { queryClient } from '@/lib/tanstack-query'
 
 const newLinkSchema = z.object({
   title: z.string().min(1, { message: 'Forneça um título válido.' }),
@@ -34,10 +35,13 @@ export function Options() {
 
   const { mutateAsync: registerLinkFn, isPending } = useMutation({
     mutationFn: registerLink,
-    onSuccess: (token) => {
-      document.cookie = `token=${token}; path=/`
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['links'],
+      })
 
       toast.success('Link registrado com sucesso!')
+
       reset()
     },
     onError: async (err) => {
