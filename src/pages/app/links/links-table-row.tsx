@@ -83,6 +83,7 @@ export function LinksTableRow({ link }: LinksTableRowProps) {
           disabled={isPending}
           onClick={() => deleteLinkFn({ id: link.id })}
         >
+          <span className="sr-only">Excluir</span>
           <Trash2 className="size-4" />
         </Button>
       </TableCell>
