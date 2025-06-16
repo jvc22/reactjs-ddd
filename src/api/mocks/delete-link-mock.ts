@@ -10,6 +10,6 @@ export const deleteLinkMock = http.delete<DeleteLinkRequest, never>(
 
     links.splice(linksIndex, 1)
 
-    return HttpResponse.json({}, { status: 200 })
+    return HttpResponse.json(null, { status: 200 })
   },
 )
